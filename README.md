@@ -109,8 +109,64 @@ print_r( $sugar->getActivities("8df3472d-23b4-e3df-c4ee-52aa3e63ef72", "Leads") 
 
 For reference purposes, this is what the data posted looks like for the REST Call.  You could modify this
 ```
-method=get_entry_list&input_type=JSON&response_type=JSON&rest_data={"session":"jkfpgd76o3aoe1hdg73cl15dl6","module_name":"Contacts","query":"contacts.id='0033000000Xqd66AAB'","order_by":null,"offset":0,"select_fields":["id","name"],"link_name_to_fields_array":[{"name":"calls","value":["id","name","description","date_modified"]},{"name":"emails","value":["id","name","description","date_modified"]},{"name":"tasks","value":["id","name","description","date_modified"]},{"name":"notes","value":["id","name","description","date_modified"]}],"max_results":20,"deleted":"FALSE"}URL: http://your.sugarbox.com/sugarcrm/service/v4_1/rest.php
+method=get_entry_list&input_type=JSON&response_type=JSON&rest_data={"session":"jkfpgd76o3aoe1hdg73cl15dl6","module_name":"Contacts","query":"contacts.id='0033000000Xqd66AAB'","order_by":null,"offset":0,"select_fields":["id","name"],"link_name_to_fields_array":[{"name":"calls","value":["id","name","description","date_modified"]},{"name":"emails","value":["id","name","description","date_modified"]},{"name":"tasks","value":["id","name","description","date_modified"]},{"name":"notes","value":["id","name","description","date_modified"]}],"max_results":20,"deleted":"FALSE"}
 ```
+
+Pretty Printed
+```json 
+method=get_entry_list&input_type=JSON&response_type=JSON&rest_data={
+  "session":"1q7uga7t0gqc8fultmgkqnacb7",
+  "module_name":"Contacts",
+  "query":"contacts.id='0033000000Xqd66AAB'",
+  "order_by":null,
+  "offset":0,
+  "select_fields":[
+    "id",
+    "name"
+  ],
+  "link_name_to_fields_array":[
+    {
+      "name":"calls",
+      "value":[
+        "id",
+        "name",
+        "description",
+        "date_modified"
+      ]
+    },
+    {
+      "name":"emails",
+      "value":[
+        "id",
+        "name",
+        "description",
+        "date_modified"
+      ]
+    },
+    {
+      "name":"tasks",
+      "value":[
+        "id",
+        "name",
+        "description",
+        "date_modified"
+      ]
+    },
+    {
+      "name":"notes",
+      "value":[
+        "id",
+        "name",
+        "description",
+        "date_modified"
+      ]
+    }
+  ],
+  "max_results":20,
+  "deleted":"FALSE"
+}
+```
+
 
 ### CURL
 ```php
