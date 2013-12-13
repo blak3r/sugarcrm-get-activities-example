@@ -64,6 +64,10 @@ Dependencies:
     }
 ```
 
+#### Improvements:
+1. Would be good to limit the number of activities returned.  Didn't look into this.
+2. Would be nice if activities were sorted by date.
+
 
 ### Usage
 
@@ -73,6 +77,28 @@ print_r( $sugar->getActivities("8df3472d-23b4-e3df-c4ee-52aa3e63ef72", "Leads") 
 ```
 
 ### Sample Output
+```php
+(
+    [0] => Array
+        (
+            [type] => tasks
+            [id] => c66b2bc5-8242-215a-54c2-52aa5a6a4196
+            [name] => test
+            [description] => test
+            [date_modified] => 2013-12-13 00:54:47
+        )
+
+    [1] => Array
+        (
+            [type] => notes
+            [id] => 226eb4ff-6bcc-cb62-975f-52aa5aadf050
+            [name] => Sample Note
+            [description] => Blah blah blah blah 
+            [date_modified] => 2013-12-13 00:55:22
+        )
+
+)
+```
 
 
 
