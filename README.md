@@ -10,14 +10,7 @@ Dependencies:
 * http://github.com/asakusuma/SugarCRM-REST-API-Wrapper-Class/
 
 
-
-
-```php
-print_r( $sugar->getActivities("0033000000Xqd66AAB","Contacts") );
-print_r( $sugar->getActivities("8df3472d-23b4-e3df-c4ee-52aa3e63ef72", "Leads") );```
-```
-
-
+### Method
 
 ```php
     function getActivities( $id, $type="Contacts" ) {
@@ -69,4 +62,126 @@ print_r( $sugar->getActivities("8df3472d-23b4-e3df-c4ee-52aa3e63ef72", "Leads") 
 
         return $activities;
     }
+```
+
+
+### Usage
+
+```php
+print_r( $sugar->getActivities("0033000000Xqd66AAB","Contacts") );
+print_r( $sugar->getActivities("8df3472d-23b4-e3df-c4ee-52aa3e63ef72", "Leads") );```
+```
+
+### Sample Output
+
+
+### JSON Payload
+
+For reference purposes, this is what the data posted looks like for the REST Call.  You could modify this
+```
+method=get_entry_list&input_type=JSON&response_type=JSON&rest_data={"session":"jkfpgd76o3aoe1hdg73cl15dl6","module_name":"Contacts","query":"contacts.id='0033000000Xqd66AAB'","order_by":null,"offset":0,"select_fields":["id","name"],"link_name_to_fields_array":[{"name":"calls","value":["id","name","description","date_modified"]},{"name":"emails","value":["id","name","description","date_modified"]},{"name":"tasks","value":["id","name","description","date_modified"]},{"name":"notes","value":["id","name","description","date_modified"]}],"max_results":20,"deleted":"FALSE"}URL: http://your.sugarbox.com/sugarcrm/service/v4_1/rest.php
+```
+
+### CURL
+```php
+        $ch = curl_init();
+
+        //print "REST REQUEST: " . $call_name . "\n". print_r($call_arguments, true);
+
+        $post_data = 'method='.$call_name.'&input_type=JSON&response_type=JSON';
+        $jsonEncodedData = json_encode($call_arguments);
+        $post_data = $post_data . "&rest_data=" . $jsonEncodedData;
+
+        print "URL: $this->rest_url\n";
+        print ("POST DATA:");
+        print_r($post_data);
+
+        curl_setopt($ch, CURLOPT_URL, $this->rest_url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+        $output = curl_exec($ch);
+
+        //print "RESPONSE: " . $output;
+
+        $response_data = json_decode($output,true);
+
+        return $response_data;
+```
+
+Where ```$method = "get_entry_list"```;
+and ```print_r($call_arguments)``` =
+```
+Array
+(
+    [session] => dc2iqklvnttvefbuvbs105bfe3
+    [module_name] => Contacts
+    [query] => contacts.id='0033000000Xqd66AAB'
+    [order_by] => 
+    [offset] => 0
+    [select_fields] => Array
+        (
+            [0] => id
+            [1] => name
+        )
+
+    [link_name_to_fields_array] => Array
+        (
+            [0] => Array
+                (
+                    [name] => calls
+                    [value] => Array
+                        (
+                            [0] => id
+                            [1] => name
+                            [2] => description
+                            [3] => date_modified
+                        )
+
+                )
+
+            [1] => Array
+                (
+                    [name] => emails
+                    [value] => Array
+                        (
+                            [0] => id
+                            [1] => name
+                            [2] => description
+                            [3] => date_modified
+                        )
+
+                )
+
+            [2] => Array
+                (
+                    [name] => tasks
+                    [value] => Array
+                        (
+                            [0] => id
+                            [1] => name
+                            [2] => description
+                            [3] => date_modified
+                        )
+
+                )
+
+            [3] => Array
+                (
+                    [name] => notes
+                    [value] => Array
+                        (
+                            [0] => id
+                            [1] => name
+                            [2] => description
+                            [3] => date_modified
+                        )
+
+                )
+
+        )
+
+    [max_results] => 20
+    [deleted] => FALSE
+)
 ```
