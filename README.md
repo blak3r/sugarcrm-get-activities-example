@@ -75,6 +75,10 @@ print_r( $sugar->getActivities("8df3472d-23b4-e3df-c4ee-52aa3e63ef72", "Leads") 
 ### Sample Output
 
 
+
+## Raw Request Stuff (for implementing in other languages) 
+----------------------------------------------------------
+
 ### JSON Payload
 
 For reference purposes, this is what the data posted looks like for the REST Call.  You could modify this
